@@ -8,7 +8,7 @@
 #include <sdktools>
 #include <tf_wheeloffatehook>
 
-#define PLUGIN_VERSION          "0.0.0"     // Plugin version.
+#define PLUGIN_VERSION          "0.0.1"     // Plugin version.
 
 public Plugin:myinfo = {
     name = "[TF2] Wheel of Fate Hook",
@@ -28,14 +28,8 @@ public OnPluginStart() {
     HookEntityOutput(WHEEL_OF_DOOM, "OnEffectApplied", EntityOutput_OnEffectApplied);
     HookEntityOutput(WHEEL_OF_DOOM, "OnEffectExpired", EntityOutput_OnEffectExpired);
     
-    AddNormalSoundHook(NormalSHook_OnEffectApplied);
-    
     g_hWOFCardShown = CreateGlobalForward("WheelOfFate_OnCardShown", ET_Ignore, Param_Cell, Param_Cell);
     g_hWOFEffectExpired = CreateGlobalForward("WheelOfFate_OnEffectExpired", ET_Ignore, Param_Cell);
-}
-
-public OnPluginEnd() {
-    RemoveNormalSoundHook(NormalSHook_OnEffectApplied);
 }
 
 public APLRes:AskPluginLoad2(Handle:hMySelf, bool:bLate, String:strError[], iMaxErrors) {
